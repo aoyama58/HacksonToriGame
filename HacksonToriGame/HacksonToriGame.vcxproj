@@ -163,6 +163,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SceneBattle.cpp" />
+    <ClCompile Include="SceneEvent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
@@ -178,6 +180,7 @@
     <Image Include="Example\chara_tori_02.png" />
     <Image Include="Example\chara_tori_03.png" />
     <Image Include="Example\chara_tori_04.png" />
+    <Image Include="Example\Title_image.png" />
     <Image Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +252,18 @@
     <Text Include="Engine\dll(x86)\libmpg123\COPYING.txt" />
     <Text Include="Engine\dll(x86)\SoundTouch\COPYING.TXT" />
     <Text Include="Engine\LogMessages.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Actor.h" />
+    <ClInclude Include="SceneBattle.h" />
+    <ClInclude Include="SceneEvent.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneTitle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Example\ゆるドラシル.mp3" />
+    <Media Include="Example\フレイヤさんの憂鬱.mp3" />
+    <Media Include="Example\死闘の先に.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

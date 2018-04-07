@@ -75,6 +75,12 @@
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="SceneEvent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBattle.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
@@ -113,6 +119,9 @@
       <Filter>リソース ファイル\Example</Filter>
     </Image>
     <Image Include="Example\chara_tori_04.png">
+      <Filter>リソース ファイル\Example</Filter>
+    </Image>
+    <Image Include="Example\Title_image.png">
       <Filter>リソース ファイル\Example</Filter>
     </Image>
   </ItemGroup>
@@ -317,5 +326,33 @@
     <Text Include="Engine\LogMessages.txt">
       <Filter>リソース ファイル\Engine</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Scene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneEvent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBattle.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Example\フレイヤさんの憂鬱.mp3">
+      <Filter>リソース ファイル\Example</Filter>
+    </Media>
+    <Media Include="Example\ゆるドラシル.mp3">
+      <Filter>リソース ファイル\Example</Filter>
+    </Media>
+    <Media Include="Example\死闘の先に.mp3">
+      <Filter>リソース ファイル\Example</Filter>
+    </Media>
   </ItemGroup>
 </Project>

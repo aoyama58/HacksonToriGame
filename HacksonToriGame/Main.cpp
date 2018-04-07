@@ -1,15 +1,19 @@
 ﻿# include <Siv3D.hpp>
-
-
+#include"SceneTitle.h"
+#include"SceneEvent.h"
+#include"SceneBattle.h"
 
 void Main()
 {
-	const Font font(30);
+	Window::Resize(800, 600);
+
+	MyScene scene;
+	scene.add<TitleScene>(SceneType::Title);
+	scene.add<EventScene>(SceneType::Event);
+	scene.add<BattleScene>(SceneType::Battle);
 
 	while (System::Update())
 	{
-		font(L"ハッカソンの開始です").draw();
-
-		Circle(Mouse::Pos(), 50).draw({ 255, 0, 0, 127 });
+		scene.updateAndDraw();
 	}
 }
