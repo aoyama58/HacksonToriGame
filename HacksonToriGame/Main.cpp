@@ -7,7 +7,7 @@ void Main()
 
 	while (System::Update())
 	{
-		font(L"ようこそ、Siv3D の世界へ！").draw();
+		font(L"ハッカソンの開始です").draw();
 
 		Circle(Mouse::Pos(), 50).draw({ 255, 0, 0, 127 });
 	}
