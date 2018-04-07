@@ -148,14 +148,43 @@ void BattleScene::update()
 	case BattlePhase::ThreeCardSelect:
 		if (z_selectedCount == 3)
 		{
-			z_phase = BattlePhase::GuidanceB;
-			z_counter = 0;
+			//コストが4以内になっているか？
+			int sum = 0;
 			for (auto& card : z_deck)
 			{
 				if (card.isSelected)
 				{
+					sum += card.cost;
+				}
+			}
+			//5以上の場合は警告出して選択を解除する
+			if (4 < sum)
+			{
+				for (auto& card : z_deck)
+				{
+					if (card.isSelected)
+						card.isSelected = false;
+				}
+				z_selectedCount = 0;
+				z_phase = BattlePhase::CostOverGuidance;
+				return;
+			}
+
+
+			z_phase = BattlePhase::GuidanceB;
+			z_counter = 0;
+			for (auto& card : z_deck)
+			{
+				//選んだ３枚をバトルゾーンに出す
+				if (card.isSelected)
+				{
 					card.isSelected = false;
 					card.canUse = false;
+					//バトルゾーンに出す
+					CardData selectedCard = card;
+					selectedCard.canUse = true;
+					selectedCard.rect = Rect(300 + static_cast<int>(z_battleDeck.size()) * 90, 320, 80, 60);
+					z_battleDeck.push_back(selectedCard);
 					continue;
 				}
 			}
@@ -163,6 +192,7 @@ void BattleScene::update()
 		//クリックしてなければ無視
 		if (!Input::MouseL.clicked)
 			return;
+
 		for (auto& card : z_deck)
 		{
 			if (card.rect.leftClicked)
@@ -188,17 +218,39 @@ void BattleScene::update()
 		{
 			z_phase = BattlePhase::BattleCardSelect;
 			z_counter = 0;
+			//エネミーカードを生成する
+			for (int i = 0 ; i < 3; ++i)
+			{
+
+			}
 		}
 		++z_counter;
 		break;
 	case BattlePhase::BattleCardSelect:
+		if (!Input::MouseL.clicked)
+			return;
 
+		for (auto& card : z_battleDeck)
+		{
+			if (card.rect.leftClicked)
+			{
+
+			}
+		}
 		break;
 	case BattlePhase::BattlePhase:
 		break;
 	case BattlePhase::Victory:
 		break;
 	case BattlePhase::Lose:
+		break;
+	case BattlePhase::CostOverGuidance:
+		if (120 < z_counter)
+		{
+			z_phase = BattlePhase::ThreeCardSelect;
+			z_counter = 0;
+		}
+		++z_counter;
 		break;
 	default:
 		break;
@@ -225,7 +277,7 @@ void BattleScene::draw() const
 	{
 		card.draw();
 	}
-
+	
 	//レイヤー３　ガイダンス
 	switch (z_phase)
 	{
@@ -250,6 +302,11 @@ void BattleScene::draw() const
 		break;
 	}
 	case BattlePhase::BattleCardSelect:
+		//バトルフィールドのカード
+		for (auto& card : z_battleDeck)
+		{
+			card.draw();
+		}
 		break;
 	case BattlePhase::BattlePhase:
 		break;
@@ -257,6 +314,14 @@ void BattleScene::draw() const
 		break;
 	case BattlePhase::Lose:
 		break;
+	case BattlePhase::CostOverGuidance:
+	{
+		Rect guidanceArea(0, 150, 800, 300);
+		guidanceArea.draw(Palette::Whitesmoke);
+		guidanceArea.drawFrame(0, 5, Palette::Black);
+		g_guidFont(L"コストがオーバーしています").drawCenter(guidanceArea.center, Palette::Black);
+		break;
+	}
 	default:
 		break;
 	}

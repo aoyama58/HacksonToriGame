@@ -93,7 +93,8 @@ enum struct BattlePhase
 	BattleCardSelect,
 	BattlePhase,
 	Victory,
-	Lose
+	Lose,
+	CostOverGuidance
 };
 
 
@@ -105,7 +106,9 @@ class BattleScene : public MyScene::Scene
 private:
 	std::vector<CardData> z_deck;
 	std::vector<CardData> z_battleDeck;
-	Font g_guidFont = Font(50);
+	std::vector<CardData> z_enemyBattleDeck;
+	CardData	z_battleCard;
+	Font g_guidFont = Font(40);
 	BattlePhase z_phase;
 	int z_round;
 	int z_counter;
